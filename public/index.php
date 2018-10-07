@@ -6,7 +6,7 @@
  * Time: 10:24 PM
  */
 
-main::start("FL_insurance_sample.csv");
+main::start("example.csv");
 class main{
     static public function start($filename)
     {
