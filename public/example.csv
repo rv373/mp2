@@ -1,3 +1,3 @@
-First,Last,UCID
-Riyaz,Varangal,rv373
-John,Doe,jdoe
+First,Last,UCID, Grade, Term
+Riyaz,Varangal,rv373,A,Fall2018
+John,Doe,jdoe,B,Fall2018
