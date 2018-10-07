@@ -38,6 +38,7 @@ class csv{
             }
             else{
                 $records[]=recordFactory::create($fieldNames, $values);
+                print_r($values);
             }
             $count++;
 
