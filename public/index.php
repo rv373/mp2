@@ -35,7 +35,10 @@ class main{
         }*/
 
         $table = html::table($csv);
+        //$bhtml = '<div>'
+        //print_r("<div>");
         print_r($table);
+        //print_r("</div>");
 
 
     }
@@ -75,21 +78,20 @@ class html {
         return $html;
     }*/
     static public function table($records) {
-/*        $html = '<html lang="en">');
-        $html = '<head>';
-  $html = '<title>Bootstrap Example</title>';
-  $html = '<meta charset="utf-8">';
-        $html = '<meta name="viewport" content="width=device-width, initial-scale=1">';
-          $html = '<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">';
-            $html = '<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>';
-          $html = '<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
-        $html = '</head>';
-                $html = '<body>';
-        $html = '<div class="container">';
-        $html = '<h2>Basic Table</h2>';
-        $html = '<p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>';
-                $html = '<body>';*/
-        $html = '<table class="table">';
+        $html = '<html lang="en">';
+        $html .= '<head>';
+        $html .= '<title>PHP MiniProj: Creating Table from CSV</title>';
+        $html .= '<meta charset="utf-8">';
+        $html .= '<meta name="viewport" content="width=device-width, initial-scale=1">';
+        $html .= '<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">';
+        $html .= '<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>';
+        $html .= '<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
+        $html .= '</head>';
+        $html .= '<body>';
+        $html .= '<div class="container">';
+        $html .= '<h2>Creating Table from CSV</h2>';
+        $html .= '<p>This ia the mini project to create bootstrap table from CSV file.</p>';
+        $html .= '<table class="table">';
         $html .= '<tr>';
         //$headings = array_shift($records);
         //$headings = array_keys($records);
@@ -115,9 +117,9 @@ class html {
             $html .= '</tr>';
         }
         $html .= '</table>';
-        /*$html = '</div>';*/
-/*                $html = '</body>';
-                        $html = '</html>';*/
+        $html .= '</div>';
+        $html .= '</body>';
+        $html .= '</html>';
         return $html;
     }
 }
