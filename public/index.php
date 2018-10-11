@@ -95,7 +95,6 @@ class html {
         $html .= '<tr>';
         //$headings = array_shift($records);
         //$headings = array_keys($records);
-        //print_r(count($headings));
 
         $titles=array();
         foreach ($records as $key=>$value){
