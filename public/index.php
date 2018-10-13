@@ -10,65 +10,32 @@ class main{
     static public function start($filename)
     {
         $records=csv::getRecords($filename);
-        //print_r(count($records));
 
-        foreach($records as $record){
-            //print_r($record);
+        foreach($records as $record) {
             $array = $record->returnArray();
-            //print_r($array);
-
         }
         //$record= recordFactory::create();
-        $data = array (
-            array ( "class"=>"1styear","branch"=>"IT","Exam"=>"SEM1","student name"=>"Alex","Bio"=>"Good Boy"),
-            array ( "class"=>"2ndyear","branch"=>"Finance","Exam"=>"SEM1","student name"=>"Mark","Bio"=>"Intelligent" ),
-            array ( "class"=>"2ndyear", "branch"=>"IT","Exam"=>"SEM1","student name"=>"Shaun","Bio"=>"Football Player" ),
-            array ( "class"=>"1styear","branch"=>"Finance","Exam"=>"SEM2","student name"=>"Mike","Bio"=>"Sport Player" ),
-            array ( "class"=>"1styear","branch"=>"IT","Exam"=>"SEM2","student name"=>"Martin","Bio"=>"Smart"),
-            array ( "class"=>"1styear","branch"=>"IT","Exam"=>"SEM1","student name"=>"Philip","Bio"=>"Programmer"  )
-        );
-
         $csv = new CSVFile('sample.csv');
-/*        foreach ($csv as $line)
-        {
-            var_dump($line);
-        }*/
-
         $table = html::table($csv);
-        //$bhtml = '<div>'
-        //print_r("<div>");
         print_r($table);
-        //print_r("</div>");
-
-
     }
-
 }
 
-class CSVFile extends SplFileObject
-{
+class CSVFile extends SplFileObject {
     private $keys;
-
-    public function __construct($file)
-    {
+    public function __construct($file) {
         parent::__construct($file);
         $this->setFlags(SplFileObject::READ_CSV);
     }
-
-    public function rewind()
-    {
+    public function rewind() {
         parent::rewind();
         $this->keys = parent::current();
         parent::next();
     }
-
-    public function current()
-    {
+    public function current() {
         return array_combine($this->keys, parent::current());
     }
-
-    public function getKeys()
-    {
+    public function getKeys() {
         return $this->keys;
     }
 }
@@ -91,30 +58,37 @@ class html {
         $html .= '<div class="container">';
         $html .= '<h2>Creating Table from CSV</h2>';
         $html .= '<p>This ia the mini project to create bootstrap table from CSV file.</p>';
-        $html .= '<table class="table">';
+        $html .= '<table class="table table-striped">';
+        $html .= '<thead>';
         $html .= '<tr>';
         //$headings = array_shift($records);
         //$headings = array_keys($records);
 
         $titles=array();
-        foreach ($records as $key=>$value){
+        foreach ($records as $key=>$value) {
             foreach ($value as $key2=>$value2) {
                 $titles[] = $key2;
             }
         }
+        $html .= '<th scope="col">#</th>';
         foreach (array_unique($titles) as $key=>$value) {
-            $html .= '<th>' . htmlspecialchars($value) . '</th>';
+            $html .= '<th scope="col">' . htmlspecialchars($value) . '</th>';
         }
-
-        //echo $html;
         $html .= '</tr>';
-        foreach($records as $key=>$value){
+        $html .= '</thead>';
+        $html .= '<tbody>';
+        $index = 1;
+        foreach($records as $key=>$value) {
             $html .='<tr>';
+            $html .= '<th scope="row">' . htmlspecialchars($index) . '</th>';
             foreach ($value as $key2=>$value2){
                 $html .= '<td>' . htmlspecialchars($value2) . '</td>';
             }
+            $index++;
             $html .= '</tr>';
         }
+        $html .= '</tbody>';
+
         $html .= '</table>';
         $html .= '</div>';
         $html .= '</body>';
@@ -123,7 +97,7 @@ class html {
     }
 }
 
-class csv{
+class csv {
     static public function getRecords($filename){
         $file=fopen($filename,"r");
         $fieldNames=array();
@@ -149,7 +123,6 @@ class record{
     public function _construct(Array $fieldNames=null,$values =  null)
     {
         $record= array_combine($fieldNames,$values);
-        //print_r($record);
         //$record= (object) $record;
         foreach($record as $property => $value){
             $this->createProperty($property, $value);
