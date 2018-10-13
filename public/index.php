@@ -1,11 +1,23 @@
+<html lang="en">
+<head>
+    <title>PHP MiniProj: Creating Table from CSV</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h2>Creating Table from CSV</h2>
+    <p>This is the mini project to create bootstrap table from CSV file.</p>
 <?php
-/**
- * Created by PhpStorm.
- * User: Riyaz Varangal
- * Date: 10/6/18
- * Time: 10:24 PM
- */
-main::start("sample.csv");
+    main::start("sample.csv");
+?>
+</div>
+</body>
+</html>
+<?php
+
 class main{
     static public function start($filename)
     {
@@ -40,29 +52,10 @@ class CSVFile extends SplFileObject {
     }
 }
 class html {
-/*    public static function tableRow($row) {
-        $html = "<tr> $row </tr>";
-        return $html;
-    }*/
     static public function table($records) {
-        $html = '<html lang="en">';
-        $html .= '<head>';
-        $html .= '<title>PHP MiniProj: Creating Table from CSV</title>';
-        $html .= '<meta charset="utf-8">';
-        $html .= '<meta name="viewport" content="width=device-width, initial-scale=1">';
-        $html .= '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">';
-        $html .= '<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>';
-        $html .= '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
-        $html .= '</head>';
-        $html .= '<body>';
-        $html .= '<div class="container">';
-        $html .= '<h2>Creating Table from CSV</h2>';
-        $html .= '<p>This ia the mini project to create bootstrap table from CSV file.</p>';
-        $html .= '<table class="table table-striped">';
-        $html .= '<thead>';
-        $html .= '<tr>';
-        //$headings = array_shift($records);
-        //$headings = array_keys($records);
+        $table = '<table class="table table-striped">';
+        $table .= '<thead>';
+        $table .= '<tr>';
 
         $titles=array();
         foreach ($records as $key=>$value) {
@@ -70,30 +63,27 @@ class html {
                 $titles[] = $key2;
             }
         }
-        $html .= '<th scope="col">#</th>';
+        $table .= '<th scope="col">#</th>';
         foreach (array_unique($titles) as $key=>$value) {
-            $html .= '<th scope="col">' . htmlspecialchars($value) . '</th>';
+            $table .= '<th scope="col">' . htmlspecialchars($value) . '</th>';
         }
-        $html .= '</tr>';
-        $html .= '</thead>';
-        $html .= '<tbody>';
+        $table .= '</tr>';
+        $table .= '</thead>';
+        $table .= '<tbody>';
         $index = 1;
         foreach($records as $key=>$value) {
-            $html .='<tr>';
-            $html .= '<th scope="row">' . htmlspecialchars($index) . '</th>';
+            $table .='<tr>';
+            $table .= '<th scope="row">' . htmlspecialchars($index) . '</th>';
             foreach ($value as $key2=>$value2){
-                $html .= '<td>' . htmlspecialchars($value2) . '</td>';
+                $table .= '<td>' . htmlspecialchars($value2) . '</td>';
             }
             $index++;
-            $html .= '</tr>';
+            $table .= '</tr>';
         }
-        $html .= '</tbody>';
+        $table .= '</tbody>';
 
-        $html .= '</table>';
-        $html .= '</div>';
-        $html .= '</body>';
-        $html .= '</html>';
-        return $html;
+        $table .= '</table>';
+        return $table;
     }
 }
 
