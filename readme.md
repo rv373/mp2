@@ -1,3 +1,3 @@
-#My Mini Project for IS601
-1. Hello
-2. World
+IS601 - Mini Project#1
+
+PHP Dynamically Creating a Table From a CSV File.
